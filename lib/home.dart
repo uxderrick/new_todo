@@ -135,24 +135,34 @@ class _HomeState extends State<Home> {
                 ),
 
                 //for loop
-                for (ToDo todo in todosLists)
-
-                  //list view
-                  ListView.builder(
-                    shrinkWrap: true,
-                    physics: const NeverScrollableScrollPhysics(),
-                    itemBuilder: (context, index) {
-                      return ListCard(
-                        taskName: todo.taskName,
-                      );
-                    },
-                  )
+                // for (ToDo todo in todosLists)
+                //You dont need a for loop for this cos list builder comes with the index 
+                //feature which allows u to make returns based on each item of the list
+                //the for loop too didnt have an end so thats why the loop kept going and created a long list
+                //for the Container i added for the beginin to check the height i removed it cos the widget(ListCard)
+                //that u were using had an already defined height so that would work fine with the Single Child Sroll view
+                //i added the item count in the List view builder too that assigns the list that u want to use to the builder 
+                //list view
+                ListView.builder(
+                  shrinkWrap: true,
+                  //here is the little change that i made 🙂
+                  itemCount: todosLists.length,
+                  physics: const NeverScrollableScrollPhysics(),
+                  itemBuilder: (context, index) {
+                    //here is the little change that i made 🙂
+                    return ListCard(
+                      taskName: todosLists[index].taskName,
+                    );
+                  },
+                )
               ],
             ),
           ),
         ),
 
         //floating action button
+        //Changed the location here
+        floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
         floatingActionButton: FloatingActionButton(
           backgroundColor: Colors.white,
           onPressed: () {
