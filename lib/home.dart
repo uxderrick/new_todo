@@ -1,0 +1,178 @@
+import 'package:flutter/material.dart';
+import 'package:new_todo/newnote.dart';
+import 'package:new_todo/todo.dart';
+
+import 'list_card.dart';
+
+class Home extends StatefulWidget {
+  const Home({super.key});
+
+  @override
+  State<Home> createState() => _HomeState();
+}
+
+class _HomeState extends State<Home> {
+  final todosLists = ToDo.todoList();
+  final _controller = TextEditingController();
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+        backgroundColor: const Color.fromARGB(255, 0, 25, 46),
+        appBar: AppBar(
+          automaticallyImplyLeading: false,
+          toolbarHeight: 64,
+          title: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              const Icon(Icons.menu),
+              Container(
+                padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                decoration: BoxDecoration(
+                    color: Colors.blueGrey.withOpacity(0.2),
+                    borderRadius: BorderRadius.circular(90)),
+                child: Row(
+                  children: const [
+                    CircleAvatar(
+                      backgroundColor: Colors.blueGrey,
+                      radius: 16,
+                      child: CircleAvatar(
+                        radius: 15,
+                        backgroundImage:
+                            NetworkImage('https://i.pravatar.cc/300'),
+                      ),
+                    ),
+                    SizedBox(
+                      width: 8,
+                    ),
+                    Text(
+                      'Derrick',
+                      style: TextStyle(fontSize: 16),
+                    )
+                  ],
+                ),
+              )
+            ],
+          ),
+          elevation: 0,
+          backgroundColor: const Color.fromARGB(255, 0, 25, 46),
+        ),
+
+        //body here
+
+        body: SingleChildScrollView(
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const SizedBox(
+                  height: 24,
+                ),
+                const Text(
+                  'Note.ly',
+                  style: TextStyle(
+                      color: Colors.blueGrey,
+                      fontSize: 80,
+                      height: 1,
+                      fontWeight: FontWeight.bold),
+                ),
+                const SizedBox(
+                  height: 24,
+                ),
+                Container(
+                  decoration: BoxDecoration(
+                      color: Colors.blueGrey.withOpacity(0.1),
+                      borderRadius: BorderRadius.circular(24)),
+                  padding: const EdgeInsets.all(24),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      const Text(
+                        'Today is 21/22/22',
+                        style: TextStyle(color: Colors.white, fontSize: 16),
+                      ),
+                      const SizedBox(
+                        height: 8,
+                      ),
+                      Row(
+                        children: const [
+                          Text(
+                            'You have ',
+                            style:
+                                TextStyle(color: Colors.blueGrey, fontSize: 20),
+                          ),
+                          Text(
+                            ' 24 tasks',
+                            style: TextStyle(
+                              color: Colors.blue,
+                              fontSize: 20,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                          Text(
+                            ' to complete',
+                            style:
+                                TextStyle(color: Colors.blueGrey, fontSize: 20),
+                          )
+                        ],
+                      ),
+                    ],
+                  ),
+                ),
+                const SizedBox(
+                  height: 40,
+                ),
+                const Text(
+                  'All tasks',
+                  style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 24,
+                      height: 1,
+                      fontWeight: FontWeight.w400),
+                ),
+                const SizedBox(
+                  height: 16,
+                ),
+
+                //for loop
+                for (ToDo todo in todosLists)
+
+                  //list view
+                  ListView.builder(
+                    shrinkWrap: true,
+                    physics: const NeverScrollableScrollPhysics(),
+                    itemBuilder: (context, index) {
+                      return ListCard(
+                        taskName: todo.taskName,
+                      );
+                    },
+                  )
+              ],
+            ),
+          ),
+        ),
+
+        //floating action button
+        floatingActionButton: FloatingActionButton(
+          backgroundColor: Colors.white,
+          onPressed: () {
+            //bottom sheet here
+            Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: ((context) => NewNote(
+                          onSave: () {
+                            setState(() {});
+                          },
+                          controller: _controller,
+                        ))));
+          },
+          child: const Icon(
+            Icons.add,
+            size: 32,
+            color: Color.fromARGB(255, 0, 25, 46),
+          ),
+        ));
+  }
+}
