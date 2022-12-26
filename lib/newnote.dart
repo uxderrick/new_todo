@@ -1,15 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-import 'package:new_todo/home.dart';
-
 class NewNote extends StatelessWidget {
-  VoidCallback onSave;
-  final controller;
-  NewNote({
+  final VoidCallback onSave;
+  const NewNote({
     Key? key,
     required this.onSave,
-    required this.controller,
   }) : super(key: key);
 
   @override
@@ -77,7 +73,6 @@ class NewNote extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 16.0),
                 child: TextField(
-                  controller: controller,
                   autofocus: true,
                   maxLength: 140,
                   maxLengthEnforcement: MaxLengthEnforcement.enforced,

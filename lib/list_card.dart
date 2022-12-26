@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:new_todo/todo.dart';
 
 class ListCard extends StatefulWidget {
   final String taskName;

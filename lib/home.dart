@@ -13,7 +13,6 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
   final todosLists = ToDo.todoList();
-  final _controller = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -165,7 +164,6 @@ class _HomeState extends State<Home> {
                           onSave: () {
                             setState(() {});
                           },
-                          controller: _controller,
                         ))));
           },
           child: const Icon(
