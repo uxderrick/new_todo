@@ -13,6 +13,15 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
   final todosLists = ToDo.todoList();
+  final _controller = TextEditingController();
+
+  //save new task
+  void saveNewTask() {
+    setState(() {
+      todosLists.add(ToDo(taskName: _controller.text));
+      Navigator.of(context).pop();
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -87,29 +96,30 @@ class _HomeState extends State<Home> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      const Text(
-                        'Today is 21/22/22',
-                        style: TextStyle(color: Colors.white, fontSize: 16),
+                      Text(
+                        'Today is ${DateTime.now()}',
+                        style:
+                            const TextStyle(color: Colors.white, fontSize: 16),
                       ),
                       const SizedBox(
                         height: 8,
                       ),
                       Row(
-                        children: const [
-                          Text(
-                            'You have ',
+                        children: [
+                          const Text(
+                            'You have',
                             style:
                                 TextStyle(color: Colors.blueGrey, fontSize: 20),
                           ),
                           Text(
-                            ' 24 tasks',
-                            style: TextStyle(
+                            ' ${todosLists.length} tasks',
+                            style: const TextStyle(
                               color: Colors.blue,
                               fontSize: 20,
                               fontWeight: FontWeight.bold,
                             ),
                           ),
-                          Text(
+                          const Text(
                             ' to complete',
                             style:
                                 TextStyle(color: Colors.blueGrey, fontSize: 20),
@@ -136,12 +146,12 @@ class _HomeState extends State<Home> {
 
                 //for loop
                 // for (ToDo todo in todosLists)
-                //You dont need a for loop for this cos list builder comes with the index 
+                //You dont need a for loop for this cos list builder comes with the index
                 //feature which allows u to make returns based on each item of the list
                 //the for loop too didnt have an end so thats why the loop kept going and created a long list
                 //for the Container i added for the beginin to check the height i removed it cos the widget(ListCard)
                 //that u were using had an already defined height so that would work fine with the Single Child Sroll view
-                //i added the item count in the List view builder too that assigns the list that u want to use to the builder 
+                //i added the item count in the List view builder too that assigns the list that u want to use to the builder
                 //list view
                 ListView.builder(
                   shrinkWrap: true,
@@ -154,6 +164,9 @@ class _HomeState extends State<Home> {
                       taskName: todosLists[index].taskName,
                     );
                   },
+                ),
+                const SizedBox(
+                  height: 40,
                 )
               ],
             ),
@@ -166,13 +179,13 @@ class _HomeState extends State<Home> {
         floatingActionButton: FloatingActionButton(
           backgroundColor: Colors.white,
           onPressed: () {
-            //bottom sheet here
             Navigator.push(
                 context,
                 MaterialPageRoute(
                     builder: ((context) => NewNote(
+                          controller: _controller,
                           onSave: () {
-                            setState(() {});
+                            saveNewTask;
                           },
                         ))));
           },

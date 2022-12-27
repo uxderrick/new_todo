@@ -1,6 +1,5 @@
 class ToDo {
-  String taskName;
-  bool isDone = false;
+  final String taskName;
 
   ToDo({
     required this.taskName,
@@ -10,7 +9,6 @@ class ToDo {
     return [
       ToDo(taskName: 'Walk the Dog'),
       ToDo(taskName: 'Buy a car'),
-      ToDo(taskName: 'Pick up Ama from school'),
     ];
   }
 }

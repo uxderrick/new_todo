@@ -1,12 +1,36 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
+import 'dart:ffi';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-class NewNote extends StatelessWidget {
-  final VoidCallback onSave;
-  const NewNote({
+import 'package:new_todo/todo.dart';
+
+class NewNote extends StatefulWidget {
+  final controller;
+  VoidCallback onSave;
+
+  NewNote({
     Key? key,
     required this.onSave,
+    this.controller,
   }) : super(key: key);
+
+  @override
+  State<NewNote> createState() => _NewNoteState();
+}
+
+class _NewNoteState extends State<NewNote> {
+  final todosLists = ToDo.todoList();
+  final _controller = TextEditingController();
+
+  //save new task
+  void saveNewTask() {
+    setState(() {
+      todosLists.add(ToDo(taskName: _controller.text));
+      Navigator.of(context).pop();
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -43,7 +67,7 @@ class NewNote extends StatelessWidget {
                 //save button
                 GestureDetector(
                   onTap: () {
-                    onSave;
+                    saveNewTask();
                   },
                   child: Container(
                     padding:
@@ -73,11 +97,15 @@ class NewNote extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 16.0),
                 child: TextField(
+                  controller: widget.controller,
                   autofocus: true,
                   maxLength: 140,
                   maxLengthEnforcement: MaxLengthEnforcement.enforced,
                   scrollPhysics: const NeverScrollableScrollPhysics(),
-                  style: const TextStyle(fontSize: 40, color: Colors.white),
+                  style: const TextStyle(
+                    fontSize: 40,
+                    color: Colors.white,
+                  ),
                   maxLines: 10,
                   decoration: InputDecoration(
                       border: InputBorder.none,

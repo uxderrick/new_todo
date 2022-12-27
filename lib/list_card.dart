@@ -17,7 +17,7 @@ class _ListCardState extends State<ListCard> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(bottom: 0),
+      padding: const EdgeInsets.only(bottom: 12),
       child: ListTile(
         //gesture detaector
         onTap: () {
@@ -31,9 +31,9 @@ class _ListCardState extends State<ListCard> {
             height: 40,
             width: 40,
             decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(900),
-                color:
-                    isDone ? Colors.blueGrey.withOpacity(0.2) : Colors.amber),
+              borderRadius: BorderRadius.circular(900),
+              color: isDone ? Colors.blueGrey.withOpacity(0.2) : Colors.amber,
+            ),
             child: isDone
                 ? const Icon(
                     Icons.check_box_outline_blank,
