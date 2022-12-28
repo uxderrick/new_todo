@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:hive_flutter/hive_flutter.dart';
+import 'package:intl/intl.dart';
+
+final _myBox = Hive.openBox('myBox');
 
 List<String> taskList = [
-  ('Ghana is a Country'),
-  ('Derrick is good'),
+  ('Sample task'),
 ];
 
 class TodoList extends ChangeNotifier {
-  ValueNotifier<List<String>> newvalue =
-      ValueNotifier(['Ghana is a Country', 'Derrick is good']);
+  ValueNotifier<List<String>> newvalue = ValueNotifier([]);
   ValueNotifier<List<String>> get newVal => newvalue;
   List<String> getValue() {
     print("new list" + newvalue.value.toString());
@@ -37,8 +39,10 @@ class TaskData {
 }
 
 List<TaskData> tasks = [
-  TaskData(title: "Ghana is a Country", date: "10/20/22"),
-  TaskData(title: "Derrick is good", date: "10/20/22"),
+  TaskData(
+      title: "Sample task", date: DateFormat.yMMMMd().format(DateTime.now())
+      // DateFormat.yMMMMd().format(DateTime.now())}
+      ),
 ];
 
 class ItemList extends ChangeNotifier {
