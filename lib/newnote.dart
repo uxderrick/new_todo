@@ -76,7 +76,7 @@ class _NewNoteState extends State<NewNote> {
                             .format(DateTime.now())
                             .toString()));
                     // print('controller');
-                    // print(taskList);
+                    print(taskList);
                     // print(taskList[taskList.length - 1]);
                   },
                   child: Container(
