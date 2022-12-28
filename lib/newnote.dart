@@ -65,6 +65,7 @@ class _NewNoteState extends State<NewNote> {
                     Navigator.of(context).pop();
                     print('controller');
                     print(taskList);
+                    print(taskList[taskList.length - 1]);
                   },
                   child: Container(
                     padding:
