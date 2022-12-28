@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-
+import 'package:new_todo/todo.dart';
+import 'package:provider/provider.dart';
 import 'home.dart';
 
 void main() {
@@ -15,7 +16,16 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: const Home(),
+      home: MultiProvider(providers: [
+        ChangeNotifierProvider<TodoList>(
+          create: (BuildContext context) => TodoList(),
+          lazy: false,
+        ),
+         ChangeNotifierProvider<ItemList>(
+          create: (BuildContext context) => ItemList(),
+          lazy: false,
+        ),
+      ], child: const Home()),
       theme: ThemeData(
         fontFamily: GoogleFonts.manrope().fontFamily,
       ),
