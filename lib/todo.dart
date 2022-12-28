@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
-List<String> taskList = [
-  ('Sample task'),
-];
+List<String> taskList = [];
 
 class TodoList extends ChangeNotifier {
   ValueNotifier<List<String>> newvalue = ValueNotifier([]);

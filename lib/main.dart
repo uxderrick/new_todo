@@ -4,7 +4,7 @@ import 'package:new_todo/todo.dart';
 import 'package:provider/provider.dart';
 import 'home.dart';
 
-void main() async {
+void main() {
   runApp(const MyApp());
 }
 
