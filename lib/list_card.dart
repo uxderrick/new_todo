@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:new_todo/todo.dart';
 
 class ListCard extends StatefulWidget {
-  final List<String> taskList;
+  final TaskData takname;
 
   const ListCard({
     Key? key,
-    required this.taskList,
+    required this.takname,
   }) : super(key: key);
 
   @override
@@ -15,7 +15,6 @@ class ListCard extends StatefulWidget {
 
 class _ListCardState extends State<ListCard> {
   bool isDone = true;
-  final taskList = <String>[];
 
   @override
   Widget build(
@@ -50,15 +49,15 @@ class _ListCardState extends State<ListCard> {
             const SizedBox(
               height: 8,
             ),
-            const Text(
-              '01/22/22',
+            Text(
+              widget.takname.date,
               style: TextStyle(color: Colors.black, fontSize: 16),
             ),
             const SizedBox(
               height: 4,
             ),
             Text(
-              "Ghana is a country",
+              widget.takname.title,
               style: TextStyle(
                   color: isDone
                       ? const Color.fromARGB(255, 0, 25, 46)
