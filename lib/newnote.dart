@@ -1,12 +1,10 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
-import 'dart:ffi';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:intl/intl.dart';
 
 import 'package:new_todo/todo.dart';
-import 'package:provider/provider.dart';
 
 class NewNote extends StatefulWidget {
   const NewNote({
@@ -19,14 +17,6 @@ class NewNote extends StatefulWidget {
 
 class _NewNoteState extends State<NewNote> {
   final TextEditingController _controller = TextEditingController();
-
-  // //save new task
-  // void saveNewTask() {
-  //   setState(() {
-  //     todosLists.add(ToDo(taskName: controller.text));
-  //     Navigator.of(context).pop();
-  //   });
-  // }
 
   @override
   Widget build(BuildContext context) {
@@ -64,11 +54,6 @@ class _NewNoteState extends State<NewNote> {
                 GestureDetector(
                   onTap: () {
                     taskList.add(_controller.text);
-                    // context.read<ItemList>().addItem(TaskData(
-                    //     title: _controller.text,
-                    //     date: DateFormat.yMMMMd()
-                    //         .format(DateTime.now())
-                    //         .toString()));
                     Navigator.of(context).pop();
                     tasks.add(TaskData(
                         title: _controller.text,
@@ -77,7 +62,6 @@ class _NewNoteState extends State<NewNote> {
                             .toString()));
                     // print('controller');
                     print(taskList);
-                    // print(taskList[taskList.length - 1]);
                   },
                   child: Container(
                     padding:
