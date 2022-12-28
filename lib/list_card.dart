@@ -31,7 +31,7 @@ class _ListCardState extends State<ListCard> {
         },
         contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(32)),
-        trailing: Container(
+        trailing: Container( 
             height: 40,
             width: 40,
             decoration: BoxDecoration(
