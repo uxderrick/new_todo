@@ -3,22 +3,19 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:new_todo/todo.dart';
 import 'package:provider/provider.dart';
 import 'home.dart';
-import "package:hive_flutter/hive_flutter.dart";
 
 void main() async {
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatefulWidget {
-  MyApp({super.key});
+  const MyApp({super.key});
 
   @override
   State<MyApp> createState() => _MyAppState();
 }
 
 class _MyAppState extends State<MyApp> {
-  final _myBox = Hive.openBox('myBox');
-
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
