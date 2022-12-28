@@ -7,13 +7,8 @@ import 'package:flutter/services.dart';
 import 'package:new_todo/todo.dart';
 
 class NewNote extends StatefulWidget {
-  final controller;
-  VoidCallback onSave;
-
-  NewNote({
+  const NewNote({
     Key? key,
-    required this.onSave,
-    this.controller,
   }) : super(key: key);
 
   @override
@@ -21,16 +16,15 @@ class NewNote extends StatefulWidget {
 }
 
 class _NewNoteState extends State<NewNote> {
-  final todosLists = ToDo.todoList();
-  final _controller = TextEditingController();
+  final TextEditingController _controller = TextEditingController();
 
-  //save new task
-  void saveNewTask() {
-    setState(() {
-      todosLists.add(ToDo(taskName: _controller.text));
-      Navigator.of(context).pop();
-    });
-  }
+  // //save new task
+  // void saveNewTask() {
+  //   setState(() {
+  //     todosLists.add(ToDo(taskName: controller.text));
+  //     Navigator.of(context).pop();
+  //   });
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -67,7 +61,10 @@ class _NewNoteState extends State<NewNote> {
                 //save button
                 GestureDetector(
                   onTap: () {
-                    saveNewTask();
+                    taskList.add(_controller.text);
+                    Navigator.of(context).pop();
+                    print('controller');
+                    print(taskList);
                   },
                   child: Container(
                     padding:
@@ -97,7 +94,7 @@ class _NewNoteState extends State<NewNote> {
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 16.0),
                 child: TextField(
-                  controller: widget.controller,
+                  controller: _controller,
                   autofocus: true,
                   maxLength: 140,
                   maxLengthEnforcement: MaxLengthEnforcement.enforced,

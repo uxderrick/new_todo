@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:new_todo/todo.dart';
 
 class ListCard extends StatefulWidget {
-  final String taskName;
+  final List<String> taskList;
+
   const ListCard({
     Key? key,
-    required this.taskName,
+    required this.taskList,
   }) : super(key: key);
 
   @override
@@ -13,9 +15,12 @@ class ListCard extends StatefulWidget {
 
 class _ListCardState extends State<ListCard> {
   bool isDone = true;
+  final taskList = <String>[];
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(
+    BuildContext context,
+  ) {
     return Padding(
       padding: const EdgeInsets.only(bottom: 12),
       child: ListTile(
@@ -53,7 +58,7 @@ class _ListCardState extends State<ListCard> {
               height: 4,
             ),
             Text(
-              widget.taskName,
+              'Derrick',
               style: TextStyle(
                   color: isDone
                       ? const Color.fromARGB(255, 0, 25, 46)

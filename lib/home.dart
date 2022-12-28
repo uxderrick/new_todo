@@ -12,16 +12,7 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  final todosLists = ToDo.todoList();
-  final _controller = TextEditingController();
-
-  //save new task
-  void saveNewTask() {
-    setState(() {
-      todosLists.add(ToDo(taskName: _controller.text));
-      Navigator.of(context).pop();
-    });
-  }
+  // final todosLists = ToDo.todoList();
 
   @override
   Widget build(BuildContext context) {
@@ -112,7 +103,7 @@ class _HomeState extends State<Home> {
                                 TextStyle(color: Colors.blueGrey, fontSize: 20),
                           ),
                           Text(
-                            ' ${todosLists.length} tasks',
+                            ' ${taskList.length} tasks',
                             style: const TextStyle(
                               color: Colors.blue,
                               fontSize: 20,
@@ -156,12 +147,12 @@ class _HomeState extends State<Home> {
                 ListView.builder(
                   shrinkWrap: true,
                   //here is the little change that i made 🙂
-                  itemCount: todosLists.length,
+                  itemCount: taskList.length,
                   physics: const NeverScrollableScrollPhysics(),
                   itemBuilder: (context, index) {
                     //here is the little change that i made 🙂
                     return ListCard(
-                      taskName: todosLists[index].taskName,
+                      taskList: taskList,
                     );
                   },
                 ),
@@ -180,14 +171,7 @@ class _HomeState extends State<Home> {
           backgroundColor: Colors.white,
           onPressed: () {
             Navigator.push(
-                context,
-                MaterialPageRoute(
-                    builder: ((context) => NewNote(
-                          controller: _controller,
-                          onSave: () {
-                            saveNewTask;
-                          },
-                        ))));
+                context, MaterialPageRoute(builder: ((context) => NewNote())));
           },
           child: const Icon(
             Icons.add,
