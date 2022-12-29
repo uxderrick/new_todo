@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:new_todo/todo.dart';
-import 'package:provider/provider.dart';
 import 'home.dart';
+import 'package:riverpod/riverpod.dart';
 
 void main() async {
   runApp(const MyApp());

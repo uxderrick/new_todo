@@ -62,12 +62,6 @@ class _NewNoteState extends State<NewNote> {
                   onTap: () {
                     Navigator.of(context).pop();
                     taskList.add(_controller.text);
-                    // tasks.add(TaskData(
-                    //     title: _controller.text,
-                    //     date: DateFormat.yMMMMd()
-                    //         .format(DateTime.now())
-                    //         .toString()));
-                    // print('controller');
                     print(taskList);
                     print(taskList[taskList.length - 1]);
                   },

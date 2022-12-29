@@ -55,7 +55,7 @@ class _ListCardState extends State<ListCard> {
               height: 4,
             ),
             Text(
-              'Ghana',
+              "taskList[index]",
               style: TextStyle(
                   color: isDone
                       ? const Color.fromARGB(255, 0, 25, 46)
