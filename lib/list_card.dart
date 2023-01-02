@@ -51,7 +51,10 @@ class _ListCardState extends State<ListCard> {
             ),
             Text(
               DateFormat.yMMMMd().format(DateTime.now()),
-              style: const TextStyle(color: Colors.black, fontSize: 16),
+              style: TextStyle(
+                color: Colors.black.withOpacity(0.6),
+                fontSize: 16,
+              ),
             ),
             const SizedBox(
               height: 4,
@@ -63,7 +66,7 @@ class _ListCardState extends State<ListCard> {
                       ? const Color.fromARGB(255, 0, 25, 46)
                       : const Color.fromARGB(255, 0, 25, 46).withOpacity(0.5),
                   fontSize: 32,
-                  fontWeight: FontWeight.bold,
+                  fontWeight: FontWeight.w500,
                   decorationStyle: TextDecorationStyle.solid,
                   decoration: isDone
                       ? TextDecoration.none
