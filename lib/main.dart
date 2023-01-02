@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:new_todo/todo.dart';
-import 'package:provider/provider.dart';
 import 'home.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-void main() {
-  runApp(const MyApp());
+void main() async {
+  runApp(const ProviderScope(
+    child: MyApp(),
+  ));
 }
 
 class MyApp extends StatefulWidget {
@@ -20,20 +21,14 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: MultiProvider(providers: [
-        ChangeNotifierProvider<TodoList>(
-          create: (BuildContext context) => TodoList(),
-          lazy: false,
+        debugShowCheckedModeBanner: false,
+        home: const Home(
+          stringList: [
+            "Click the '+ to create a new task. When a task is completed, click it to signify completion. To delete a task, swipe on the card."
+          ],
         ),
-        ChangeNotifierProvider<ItemList>(
-          create: (BuildContext context) => ItemList(),
-          lazy: false,
-        ),
-      ], child: const Home()),
-      theme: ThemeData(
-        fontFamily: GoogleFonts.manrope().fontFamily,
-      ),
-    );
+        theme: ThemeData(
+          fontFamily: GoogleFonts.manrope().fontFamily,
+        ));
   }
 }

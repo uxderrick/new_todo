@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:new_todo/todo.dart';
+import 'package:intl/intl.dart';
 
 class ListCard extends StatefulWidget {
-  final TaskData takname;
+  final String string;
 
   const ListCard({
     Key? key,
-    required this.takname,
+    required this.string,
   }) : super(key: key);
 
   @override
@@ -31,7 +31,7 @@ class _ListCardState extends State<ListCard> {
         },
         contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(32)),
-        trailing: Container( 
+        trailing: Container(
             height: 40,
             width: 40,
             decoration: BoxDecoration(
@@ -50,14 +50,14 @@ class _ListCardState extends State<ListCard> {
               height: 8,
             ),
             Text(
-              widget.takname.date,
-              style: TextStyle(color: Colors.black, fontSize: 16),
+              DateFormat.yMMMMd().format(DateTime.now()),
+              style: const TextStyle(color: Colors.black, fontSize: 16),
             ),
             const SizedBox(
               height: 4,
             ),
             Text(
-              widget.takname.title,
+              widget.string,
               style: TextStyle(
                   color: isDone
                       ? const Color.fromARGB(255, 0, 25, 46)
