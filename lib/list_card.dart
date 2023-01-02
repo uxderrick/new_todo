@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:new_todo/todo.dart';
 
 class ListCard extends StatefulWidget {
+  final String string;
+
   const ListCard({
     Key? key,
+    required this.string,
   }) : super(key: key);
 
   @override
@@ -55,7 +57,7 @@ class _ListCardState extends State<ListCard> {
               height: 4,
             ),
             Text(
-              "taskList[index]",
+              widget.string,
               style: TextStyle(
                   color: isDone
                       ? const Color.fromARGB(255, 0, 25, 46)

@@ -1,19 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:new_todo/newnote.dart';
-import 'package:new_todo/todo.dart';
 import 'package:intl/intl.dart';
 import 'list_card.dart';
-import 'package:hive/hive.dart';
 
 class Home extends StatefulWidget {
-  const Home({super.key});
+  final List<String> stringList;
+  const Home({super.key, required this.stringList});
 
   @override
   State<Home> createState() => _HomeState();
 }
 
 class _HomeState extends State<Home> {
-  @override
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -104,7 +102,9 @@ class _HomeState extends State<Home> {
                                 TextStyle(color: Colors.blueGrey, fontSize: 20),
                           ),
                           Text(
-                            ' ${taskList.length} tasks',
+                            widget.stringList.length == 1
+                                ? ' ${widget.stringList.length} task'
+                                : ' ${widget.stringList.length} tasks',
                             style: const TextStyle(
                               color: Colors.blue,
                               fontSize: 20,
@@ -135,24 +135,25 @@ class _HomeState extends State<Home> {
                 const SizedBox(
                   height: 16,
                 ),
-
-                //for loop
-                // for (ToDo todo in todosLists)
-                //You dont need a for loop for this cos list builder comes with the index
-                //feature which allows u to make returns based on each item of the list
-                //the for loop too didnt have an end so thats why the loop kept going and created a long list
-                //for the Container i added for the beginin to check the height i removed it cos the widget(ListCard)
-                //that u were using had an already defined height so that would work fine with the Single Child Sroll view
-                //i added the item count in the List view builder too that assigns the list that u want to use to the builder
-                //list view
                 ListView.builder(
                   shrinkWrap: true,
                   //here is the little change that i made 🙂
-                  itemCount: taskList.length,
+                  itemCount: widget.stringList.length,
                   physics: const NeverScrollableScrollPhysics(),
                   itemBuilder: (context, index) {
                     //here is the little change that i made 🙂
-                    return ListCard();
+                    return Dismissible(
+                      key: Key(widget.stringList[index]),
+                      onDismissed: (direction) async {
+                        setState(() {
+                          widget.stringList.removeAt(index);
+                        });
+                      },
+                      child: ListCard(
+                        string: widget.stringList[index],
+                        // stringList: [stringList[index]],
+                      ),
+                    );
                   },
                 ),
                 const SizedBox(
@@ -164,13 +165,12 @@ class _HomeState extends State<Home> {
         ),
 
         //floating action button
-        //Changed the location here
         floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
         floatingActionButton: FloatingActionButton(
           backgroundColor: Colors.white,
           onPressed: () {
-            Navigator.push(context,
-                MaterialPageRoute(builder: ((context) => const NewNote())));
+            Navigator.push(
+                context, MaterialPageRoute(builder: ((context) => NewNote())));
           },
           child: const Icon(
             Icons.add,

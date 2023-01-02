@@ -1,32 +1,21 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
-
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:new_todo/home.dart';
 
-import 'package:new_todo/todo.dart';
+final textControllerProvider = StateProvider((ref) => TextEditingController());
+final stringListProvider = StateProvider((ref) => <String>[]);
 
-class NewNote extends StatefulWidget {
+class NewNote extends ConsumerWidget {
   const NewNote({
     Key? key,
   }) : super(key: key);
 
   @override
-  State<NewNote> createState() => _NewNoteState();
-}
+  Widget build(BuildContext context, WidgetRef ref) {
+    final controller = ref.watch(textControllerProvider);
+    final stringList = ref.watch(stringListProvider);
 
-class _NewNoteState extends State<NewNote> {
-  final TextEditingController _controller = TextEditingController();
-
-  // //save new task
-  // void saveNewTask() {
-  //   setState(() {
-  //     todosLists.add(ToDo(taskName: controller.text));
-  //     Navigator.of(context).pop();
-  //   });
-  // }
-
-  @override
-  Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color.fromARGB(255, 0, 25, 46),
       appBar: AppBar(
@@ -60,10 +49,16 @@ class _NewNoteState extends State<NewNote> {
                 //save button
                 GestureDetector(
                   onTap: () {
-                    Navigator.of(context).pop();
-                    taskList.add(_controller.text);
-                    print(taskList);
-                    print(taskList[taskList.length - 1]);
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) =>
+                                Home(stringList: stringList)));
+                    // stringList.add(controller.text);
+                    ref.read(stringListProvider).add(controller.text);
+                    print(stringList);
+                    print(stringList[stringList.length - 1]);
+                    controller.clear();
                   },
                   child: Container(
                     padding:
@@ -93,7 +88,7 @@ class _NewNoteState extends State<NewNote> {
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 16.0),
                 child: TextField(
-                  controller: _controller,
+                  controller: controller,
                   autofocus: true,
                   maxLength: 140,
                   maxLengthEnforcement: MaxLengthEnforcement.enforced,
