@@ -67,7 +67,7 @@ class _HomeState extends State<Home> {
                   height: 24,
                 ),
                 const Text(
-                  'Note.ly',
+                  'Task.ly',
                   style: TextStyle(
                       color: Colors.blueGrey,
                       fontSize: 80,
