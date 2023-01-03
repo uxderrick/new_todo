@@ -78,6 +78,7 @@ class _HomeState extends State<Home> {
                   height: 24,
                 ),
                 Container(
+                  width: MediaQuery.of(context).size.width,
                   decoration: BoxDecoration(
                       color: Colors.blueGrey.withOpacity(0.1),
                       borderRadius: BorderRadius.circular(24)),
@@ -94,29 +95,29 @@ class _HomeState extends State<Home> {
                       const SizedBox(
                         height: 8,
                       ),
-                      Row(
-                        children: [
-                          const Text(
-                            'You have',
-                            style:
-                                TextStyle(color: Colors.blueGrey, fontSize: 20),
-                          ),
-                          Text(
-                            widget.stringList.length == 1
-                                ? ' ${widget.stringList.length} task'
-                                : ' ${widget.stringList.length} tasks',
-                            style: const TextStyle(
-                              color: Colors.blue,
-                              fontSize: 20,
-                              fontWeight: FontWeight.bold,
+                      RichText(
+                        text: TextSpan(
+                          children: [
+                            const TextSpan(
+                                text: 'You have',
+                                style: TextStyle(
+                                    color: Colors.blueGrey, fontSize: 20)),
+                            TextSpan(
+                              text: widget.stringList.length == 1
+                                  ? ' ${widget.stringList.length} task'
+                                  : ' ${widget.stringList.length} tasks',
+                              style: const TextStyle(
+                                color: Colors.blue,
+                                fontSize: 20,
+                                fontWeight: FontWeight.bold,
+                              ),
                             ),
-                          ),
-                          const Text(
-                            ' to complete',
-                            style:
-                                TextStyle(color: Colors.blueGrey, fontSize: 20),
-                          )
-                        ],
+                            const TextSpan(
+                                text: ' to complete',
+                                style: TextStyle(
+                                    color: Colors.blueGrey, fontSize: 20)),
+                          ],
+                        ),
                       ),
                     ],
                   ),
@@ -136,6 +137,7 @@ class _HomeState extends State<Home> {
                   height: 16,
                 ),
                 ListView.builder(
+                  reverse: true,
                   shrinkWrap: true,
                   //here is the little change that i made 🙂
                   itemCount: widget.stringList.length,
@@ -169,8 +171,8 @@ class _HomeState extends State<Home> {
         floatingActionButton: FloatingActionButton(
           backgroundColor: Colors.white,
           onPressed: () {
-            Navigator.push(
-                context, MaterialPageRoute(builder: ((context) => NewNote())));
+            Navigator.push(context,
+                MaterialPageRoute(builder: ((context) => const NewNote())));
           },
           child: const Icon(
             Icons.add,
