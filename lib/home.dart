@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:new_todo/newnote.dart';
 import 'package:intl/intl.dart';
 import 'list_card.dart';
@@ -22,7 +23,16 @@ class _HomeState extends State<Home> {
           title: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              const Icon(Icons.menu),
+              Text(
+                'Task.ly',
+                style: GoogleFonts.eastSeaDokdo(
+                    textStyle: const TextStyle(
+                        color: Colors.greenAccent,
+                        fontSize: 40,
+                        height: 1,
+                        fontWeight: FontWeight.bold)),
+              ),
+              const Spacer(),
               Container(
                 padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
                 decoration: BoxDecoration(
@@ -64,20 +74,13 @@ class _HomeState extends State<Home> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 const SizedBox(
-                  height: 24,
-                ),
-                const Text(
-                  'Task.ly',
-                  style: TextStyle(
-                      color: Colors.blueGrey,
-                      fontSize: 80,
-                      height: 1,
-                      fontWeight: FontWeight.bold),
+                  height: 8,
                 ),
                 const SizedBox(
                   height: 24,
                 ),
                 Container(
+                  width: MediaQuery.of(context).size.width,
                   decoration: BoxDecoration(
                       color: Colors.blueGrey.withOpacity(0.1),
                       borderRadius: BorderRadius.circular(24)),
@@ -94,29 +97,29 @@ class _HomeState extends State<Home> {
                       const SizedBox(
                         height: 8,
                       ),
-                      Row(
-                        children: [
-                          const Text(
-                            'You have',
-                            style:
-                                TextStyle(color: Colors.blueGrey, fontSize: 20),
-                          ),
-                          Text(
-                            widget.stringList.length == 1
-                                ? ' ${widget.stringList.length} task'
-                                : ' ${widget.stringList.length} tasks',
-                            style: const TextStyle(
-                              color: Colors.blue,
-                              fontSize: 20,
-                              fontWeight: FontWeight.bold,
+                      RichText(
+                        text: TextSpan(
+                          children: [
+                            const TextSpan(
+                                text: 'You have',
+                                style: TextStyle(
+                                    color: Colors.blueGrey, fontSize: 20)),
+                            TextSpan(
+                              text: widget.stringList.length == 1
+                                  ? ' ${widget.stringList.length} task'
+                                  : ' ${widget.stringList.length} tasks',
+                              style: const TextStyle(
+                                color: Colors.blue,
+                                fontSize: 20,
+                                fontWeight: FontWeight.bold,
+                              ),
                             ),
-                          ),
-                          const Text(
-                            ' to complete',
-                            style:
-                                TextStyle(color: Colors.blueGrey, fontSize: 20),
-                          )
-                        ],
+                            const TextSpan(
+                                text: ' to complete',
+                                style: TextStyle(
+                                    color: Colors.blueGrey, fontSize: 20)),
+                          ],
+                        ),
                       ),
                     ],
                   ),
@@ -136,6 +139,7 @@ class _HomeState extends State<Home> {
                   height: 16,
                 ),
                 ListView.builder(
+                  reverse: true,
                   shrinkWrap: true,
                   //here is the little change that i made 🙂
                   itemCount: widget.stringList.length,
@@ -169,8 +173,8 @@ class _HomeState extends State<Home> {
         floatingActionButton: FloatingActionButton(
           backgroundColor: Colors.white,
           onPressed: () {
-            Navigator.push(
-                context, MaterialPageRoute(builder: ((context) => NewNote())));
+            Navigator.push(context,
+                MaterialPageRoute(builder: ((context) => const NewNote())));
           },
           child: const Icon(
             Icons.add,
