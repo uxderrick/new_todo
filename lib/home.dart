@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:new_todo/newnote.dart';
 import 'package:intl/intl.dart';
 import 'list_card.dart';
@@ -22,7 +23,16 @@ class _HomeState extends State<Home> {
           title: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              const Icon(Icons.menu),
+              Text(
+                'Task.ly',
+                style: GoogleFonts.eastSeaDokdo(
+                    textStyle: const TextStyle(
+                        color: Colors.greenAccent,
+                        fontSize: 40,
+                        height: 1,
+                        fontWeight: FontWeight.bold)),
+              ),
+              const Spacer(),
               Container(
                 padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
                 decoration: BoxDecoration(
@@ -64,15 +74,7 @@ class _HomeState extends State<Home> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 const SizedBox(
-                  height: 24,
-                ),
-                const Text(
-                  'Task.ly',
-                  style: TextStyle(
-                      color: Colors.blueGrey,
-                      fontSize: 80,
-                      height: 1,
-                      fontWeight: FontWeight.bold),
+                  height: 8,
                 ),
                 const SizedBox(
                   height: 24,
