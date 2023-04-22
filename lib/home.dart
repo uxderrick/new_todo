@@ -34,7 +34,8 @@ class _HomeState extends State<Home> {
               ),
               const Spacer(),
               Container(
-                padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                padding: const EdgeInsets.only(
+                    left: 4, right: 12, top: 4, bottom: 4),
                 decoration: BoxDecoration(
                     color: Colors.blueGrey.withOpacity(0.2),
                     borderRadius: BorderRadius.circular(90)),
@@ -45,8 +46,8 @@ class _HomeState extends State<Home> {
                       radius: 16,
                       child: CircleAvatar(
                         radius: 15,
-                        backgroundImage: NetworkImage(
-                            'https://media.licdn.com/dms/image/D4D03AQHrAy4t4kGOdw/profile-displayphoto-shrink_200_200/0/1666960656997?e=1678320000&v=beta&t=YhRU-XW6m45NKaCc1K3qjoA-pgq245qYRP6JN2o4NB4'),
+                        backgroundImage:
+                            NetworkImage('https://i.pravatar.cc/300'),
                       ),
                     ),
                     SizedBox(
